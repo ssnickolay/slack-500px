@@ -3,19 +3,22 @@ require 'multi_json'
 require_relative 'auth_service'
 require_relative 'request/base'
 require_relative 'request/popular'
+require_relative 'request/search'
 
 module Slack500px
   class Finder
-    RESERVED_TEXT = {
+    RESERVED = {
       'popular' => Slack500px::Request::Popular
     }
 
     def initialize(query, _)
-      @request = Slack500px::Request::Popular.new(query)
+      @query = query
+      @request_class = RESERVED[query] || Slack500px::Request::Search
     end
 
     def perform
-      @request.perform
+      p "USE #{ @request_class }"
+      @request_class.new(@query).perform
     end
   end
 end

@@ -1,15 +1,6 @@
 module Slack500px
   module Request
     class Popular < Base
-      def perform
-        response = MultiJson.decode(@auth.get(build_url).body)
-        if response['photos'].any?
-          response['photos'][0]['image_url']
-        else
-          ENV['DEFAULT_ANSWER']
-        end
-      end
-
       private
 
       def build_url
