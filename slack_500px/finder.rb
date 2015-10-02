@@ -10,17 +10,28 @@ module Slack500px
   class Finder
     RESERVED = {
       'popular' => Slack500px::Request::Popular,
-      'black_and_white' => Slack500px::Request::BlackAndWhite
+      'black_and_white' => Slack500px::Request::BlackAndWhite,
     }
 
-    def initialize(query, _)
-      @query = query
-      @request_class = RESERVED[query] || Slack500px::Request::Search
-    end
+    class << self
+      def perform(query)
+        request_class = find_request(query)
+        p "USE #{ request_class }"
 
-    def perform
-      p "USE #{ @request_class }"
-      @request_class.new(@query).perform
+        request_class.new(query).perform
+      end
+
+      private
+
+      def find_request(query)
+        if query == 'inspiration'
+          RESERVED.values.sample
+        elsif RESERVED.has_key?(query)
+          RESERVED[query]
+        else
+          Slack500px::Request::Search
+        end
+      end
     end
   end
 end
