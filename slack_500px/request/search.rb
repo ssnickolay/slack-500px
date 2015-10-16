@@ -4,7 +4,7 @@ module Slack500px
       private
 
       def build_url
-        'https://api.500px.com/v1/photos/search?tag=%{tag}&sort=%{sort}&rpp=1&image_size=4&page=%{page}' % params
+        URI.escape('https://api.500px.com/v1/photos/search?tag=%{tag}&sort=%{sort}&rpp=1&image_size=4&page=%{page}' % params)
       end
 
       def params
