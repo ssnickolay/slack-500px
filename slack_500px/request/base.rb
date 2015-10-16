@@ -30,7 +30,7 @@ module Slack500px
       end
 
       def page
-        Random.rand(1000)
+        Random.rand(500)
       end
 
       def sort

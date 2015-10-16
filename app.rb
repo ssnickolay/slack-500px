@@ -24,9 +24,19 @@ Cuba.define do
   end
 
   on post do
-    on 'search', param('text') do |query|
+    on 'search', param('query') do |query|
       res.headers['Content-Type'] = 'application/json; charset=utf-8'
+      res.write({text: Slack500px::Finder.perform(query)}.to_json)
+    end
+
+    # Request example:
+    # => {"team_domain"=>"runtimellc", channel_name"=>"general", "timestamp"=>"1445007178.000010", "text"=>"500px cat", "trigger_word"=>"500px"}
+    on 'for_slack', param('text'), param('trigger_word') do |query, trigger_word|
+      res.headers['Content-Type'] = 'application/json; charset=utf-8'
+      query = query.gsub("#{ trigger_word } ", '')
+      puts query
       res.write({text: Slack500px::Finder.perform(query)}.to_json)
     end
   end
 end
+
