@@ -2,7 +2,7 @@ slack-500px
 ======
 ![Slack.com logo](https://slack.global.ssl.fastly.net/8872/img/landing_slack_hash_wordmark_logo.png "Slack.com")
 
-Bot for Slack chat that posting something to it like ![slack-plain-bots](https://github.com/yetithefoot/slack-plain-bots)
+Bot for Slack chat that posting something to it. (like [slack-plain-bots](https://github.com/yetithefoot/slack-plain-bots))
 
 List of available trigger words:
 * __inspiration__ - random images from 500px
@@ -21,7 +21,7 @@ Configuring Outgoing Webhook
 
 Everything is simple. Lets configure boobs bot. Slack should send a POST request to bot's url ```https://slack-500px.herokuapp.com```, like here:
 
-![Configuring Outgoing Webhook](https://github.com/ssnikolay/slack-500px/settings.png "Configuring Outgoing Webhook")
+![Configuring Outgoing Webhook](https://github.com/ssnikolay/slack-500px/blob/master/settings.png "Configuring Outgoing Webhook")
 
 Then it responds with payload to Slack: `500px cat`
 
