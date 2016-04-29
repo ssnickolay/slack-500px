@@ -13,7 +13,7 @@ module Slack500px
 
       def perform
         response = MultiJson.decode(@auth.get(build_url).body)
-        if response['photos'].any?
+        if response['photos'] && response['photos'].any?
           response['photos'][0]['image_url']
         else
           ENV['DEFAULT_ANSWER']
