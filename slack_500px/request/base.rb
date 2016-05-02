@@ -52,7 +52,7 @@ module Slack500px
       end
 
       def sort
-        SORTS.sample
+        '_score'
       end
     end
   end
