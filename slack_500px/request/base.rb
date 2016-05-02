@@ -39,7 +39,7 @@ module Slack500px
 
       def random_page
         max_pages_count = page_counts
-        if max_pages_count.blank? || max_pages_count.zero?
+        if max_pages_count.nil? || max_pages_count.zero?
           raise NotFound
         else
           Random.rand(page_counts)
