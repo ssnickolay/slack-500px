@@ -47,7 +47,6 @@ module Slack500px
 
       def page_counts
         response = MultiJson.decode(@auth.get(build_url(base_params(1))).body)
-        puts(response['total_pages'])
         response['total_pages']
       end
 
