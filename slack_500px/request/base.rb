@@ -16,6 +16,7 @@ module Slack500px
 
       def perform
         url = build_url(base_params)
+        puts url
         response = MultiJson.decode(@auth.get(url).body)
         if response['photos'] && response['photos'].any?
           response['photos'].sample['image_url']
@@ -38,7 +39,7 @@ module Slack500px
 
       def random_page
         max_pages_count = page_counts
-        if max_pages_count.zero?
+        if max_pages_count.blank? || max_pages_count.zero?
           raise NotFound
         else
           Random.rand(page_counts)
