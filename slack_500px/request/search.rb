@@ -3,11 +3,11 @@ module Slack500px
     class Search < Base
       private
 
-      def build_url
-        URI.escape('https://api.500px.com/v1/photos/search?tag=%{tag}&sort=%{sort}&rpp=1&image_size=4&page=%{page}' % params)
+      def build_url(params)
+        URI.escape('https://api.500px.com/v1/photos/search?term=%{tag}&sort=%{sort}&rpp=%{rpp}&image_size=4&page=%{page}' % params)
       end
 
-      def params
+      def base_params(start_page = nil)
         super.merge(tag: @query)
       end
     end
