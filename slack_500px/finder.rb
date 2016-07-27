@@ -8,6 +8,7 @@ require_relative 'request/search'
 
 module Slack500px
   class Finder
+    DEFAULT_IMAGE = 'http://i33.carguru.ru/89/34/93489/51/2052951/969292396ene.gif'
     RESERVED = {
       'popular' => Slack500px::Request::Popular,
       'black_and_white' => Slack500px::Request::BlackAndWhite,
@@ -15,10 +16,14 @@ module Slack500px
 
     class << self
       def perform(query)
-        request_class = find_request(query)
-        p "USE #{ request_class }"
+        begin
+          request_class = find_request(query)
+          p "USE #{ request_class }"
 
-        request_class.new(query).perform
+          request_class.new(query).perform
+        rescue Errno::EHOSTUNREACH
+          DEFAULT_IMAGE
+        end  
       end
 
       private
