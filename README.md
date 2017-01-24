@@ -32,4 +32,3 @@ Thanx to guys from http://500px.com for great photos API.
 
 P.S. You can use public API (for *not* slack):
 - http://slack-500px.herokuapp.com/inspiration
-- http://slack-500px.herokuapp.com/search?query=cat
